@@ -51,7 +51,10 @@
     background:linear-gradient(165deg,rgba(255,255,255,.11),rgba(255,255,255,.035));
     box-shadow:0 14px 36px rgba(0,0,0,.4)}
   .mode:active{transform:scale(.985)}
-  .mode .mi{font-size:26px;line-height:1;flex:0 0 auto}
+  .mode .mi{font-size:26px;line-height:1;flex:0 0 auto;position:relative}
+  .dot{position:absolute;top:-4px;right:-6px;width:9px;height:9px;border-radius:50%;
+    background:#ff8ac2;box-shadow:0 0 0 3px rgba(255,138,194,.16);
+    animation:pulse 1.6s ease-in-out infinite}
   .mode .mt{display:block;font-weight:800;font-size:16.5px;letter-spacing:.01em}
   .mode .ms{display:block;font-size:11.5px;color:#a6b4dd;margin-top:2px}
   .mode .mc{margin-left:auto;font-size:10px;letter-spacing:.1em;color:#7f8db8;
@@ -123,7 +126,7 @@
     padding:17px;border:0;border-radius:17px;color:#06122b;
     background:linear-gradient(135deg,#5ad1ff,#a78bfa);width:100%}
 
-  /* ===== слова / quizlet ===== */
+  /* слова / quizlet */
   .wordsScreen{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;
     justify-content:flex-start;gap:9px}
   .scroller{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
@@ -701,7 +704,7 @@ function renderHome(){
       '<p class="kicker">Pick a game</p>' +
       '<h1>Statement Station</h1>' +
       '<button class="mode first" id="mWords" type="button">' +
-        '<span class="mi">📚</span>' +
+        '<span class="mi">📚' + (SAVE.words.seen ? '' : '<i class="dot"></i>') + '</span>' +
         '<span><span class="tag">HOMEWORK</span>' +
         '<span class="mt">Слова Quizlet</span>' +
         '<span class="ms">Как открыть карточки — по-русски.</span></span>' +
@@ -746,6 +749,7 @@ homeBtn.addEventListener("click", function(){
 
 function renderWords(){
   MODE = "words";
+  SAVE.words.seen = true; save();
   clearTimers(); paintPalette(); paintHud();
   stage.innerHTML =
     '<section class="screen wordsScreen">' +
@@ -1044,7 +1048,7 @@ function finishRoute(form, text){
   document.getElementById("next").addEventListener("click", function(){
     blip(720, 0.07); deliverDoors([r.subject]);
   });
-  later(function(){ deliverDoors([r.subject]); }, 6000);
+  later(function(){ if(!sheetOpen) deliverDoors([r.subject]); }, 6000);
 }
 
 function finishTwins(form, formFirst){
@@ -1077,7 +1081,7 @@ function finishTwins(form, formFirst){
   document.getElementById("next").addEventListener("click", function(){
     blip(720, 0.07); deliverDoors(subs);
   });
-  later(function(){ deliverDoors(subs); }, 7000);
+  later(function(){ if(!sheetOpen) deliverDoors(subs); }, 7000);
 }
 
 function deliverDoors(subjects){
@@ -1276,8 +1280,6 @@ load();
 paintPalette();
 document.getElementById("sound").textContent = SAVE.muted ? "🔇" : "🔊";
 renderHome();
-
-if(!SAVE.words.seen) setTimeout(openHelp, 700);
 
 })();
 </script>
