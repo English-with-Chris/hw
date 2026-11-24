@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff7ec">
+<title>Моя неделя английского · 25–28 ноября</title>
+<style>
+:root{
+  --ink:#2b2118; --muted:#8a7a6a; --line:#f0dfc8;
+  --o:#ff7a3d; --o2:#d9561f;
+  --teal:#19a596; --teal2:#0f7a6e;
+  --purple:#7c5cff;
+  --good:#1f8a6d; --bad:#c9432a;
+  --card:#fff;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{
+  font:17px/1.45 "Trebuchet MS","Segoe UI",system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(90vw 55vh at 90% -10%, #ffe9b8 0%, rgba(255,233,184,0) 60%),
+    radial-gradient(80vw 50vh at 0% 110%, #ffd9c2 0%, rgba(255,217,194,0) 55%),
+    #fff7ec;
+  background-attachment:fixed;
+  padding:0 0 calc(34px + env(safe-area-inset-bottom));
+}
+.wrap{max-width:620px;margin:0 auto;padding:14px 14px 0}
+
+/* ---------- top ---------- */
+.top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.brand{font-weight:800;font-size:19px;letter-spacing:-.3px;line-height:1.15}
+.brand span{display:block;font-size:12.5px;color:var(--muted);font-weight:600;margin-top:2px}
+.ghost{margin-left:auto;font:inherit;font-size:13px;font-weight:700;color:var(--ink);
+  background:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 12px;cursor:pointer;
+  box-shadow:0 3px 0 rgba(190,150,110,.3);white-space:nowrap}
+.ghost:active{transform:translateY(2px);box-shadow:none}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;position:sticky;top:0;z-index:20;
+  background:linear-gradient(#fff7ec 72%, rgba(255,247,236,0));scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;font:inherit;font-weight:800;font-size:15px;border:2px solid var(--line);
+  background:#fff;color:var(--muted);border-radius:14px;padding:9px 14px;cursor:pointer;
+  display:flex;gap:7px;align-items:center;box-shadow:0 3px 0 rgba(190,150,110,.28);
+  transition:transform .1s,box-shadow .1s}
+.tab:active{transform:translateY(2px);box-shadow:none}
+.tab.on{background:var(--o);border-color:var(--o);color:#fff;box-shadow:0 3px 0 var(--o2)}
+.tab .te{font-size:16px}
+.tab .ok{font-size:12px}
+
+/* ---------- day ---------- */
+.day{display:none}
+.day.on{display:block;animation:pop .3s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.dayhead{margin:4px 0 14px}
+.pill{display:inline-block;background:#fff;border:2px solid var(--line);border-radius:99px;
+  padding:5px 12px;font-size:11.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--muted)}
+.dayhead h1{margin:8px 0 4px;font-size:26px;letter-spacing:-.5px;line-height:1.15}
+.dayhead .sub{margin:0;color:var(--muted);font-size:14.5px}
+
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px;
+  margin:0 0 14px;box-shadow:0 5px 0 rgba(190,150,110,.22)}
+.card.hero{background:linear-gradient(165deg,#fff9f1,#fff 55%)}
+.card.mint{background:linear-gradient(165deg,#effbf7,#fff 60%)}
+.qhead{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;margin-bottom:10px}
+.step{background:#ffc233;color:#6b4a00;border-radius:8px;padding:3px 8px;font-size:11.5px;
+  font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+.mins{margin-left:auto;font-size:12.5px;color:var(--muted);font-weight:700}
+.small{font-size:14px;color:var(--muted);margin:0 0 10px;line-height:1.5}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;
+  font-weight:800;font-size:16px;padding:13px 18px;border-radius:14px;border:none;
+  background:var(--o);color:#fff;cursor:pointer;box-shadow:0 4px 0 var(--o2);
+  text-decoration:none;width:100%}
+.btn:active{transform:translateY(3px);box-shadow:none}
+.btn.teal{background:var(--teal);box-shadow:0 4px 0 var(--teal2)}
+.btn.purple{background:var(--purple);box-shadow:0 4px 0 #5a3ee0}
+.btn.ghost2{background:#fff;color:var(--ink);border:2px solid var(--line);
+  box-shadow:0 4px 0 rgba(190,150,110,.28)}
+.btn:disabled{opacity:.45;box-shadow:none;transform:none;cursor:default}
+
+/* ---------- quiz block ---------- */
+.setname{font-size:13px;color:var(--muted);font-weight:700;margin:0 0 10px}
+.algo{background:#fff5ef;border:2px dashed #ffbfa3;border-radius:16px;padding:12px;margin-top:12px}
+.algo-t{margin:0 0 9px;font-size:14px;font-weight:700}
+.srrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 8px}
+.sr{border-radius:10px;border:2px solid var(--line);background:#fff;text-align:center;
+  padding:8px 3px;font-size:12px;font-weight:800;color:var(--muted);line-height:1.2}
+.sr span{display:block;font-size:10.5px;font-weight:700;color:#b9a795;margin-top:3px}
+.sr.repeat{border-color:#f5b39a;background:#fdeee8;color:#a33c17}
+.sr.okay{border-color:#93ddc0;background:#e9f8f1;color:#0e6b52}
+.sr.hard,.sr.easy{opacity:.5}
+.srnote{margin:0 0 10px;font-size:14px;font-weight:900;color:#8a3f18}
+.rules{margin:0 0 10px;padding-left:18px;font-size:13.5px;line-height:1.5;color:#5c4b3c}
+.rules li{margin-bottom:6px}
+.rules li.no{color:#a33c17;font-weight:700}
+.algowarn{margin:0;font-size:13px;line-height:1.5;color:#8a3f18;font-weight:700}
+.fc{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--muted);
+  cursor:pointer;margin-top:12px;background:#fff;border:2px solid var(--line);border-radius:12px;
+  padding:10px 12px}
+.fc input{width:19px;height:19px;accent-color:var(--teal)}
+
+/* ---------- parent box ---------- */
+.parentbox{background:#eef4ff;border:2px solid #cddffb;border-radius:16px;padding:12px 14px;margin:0 0 14px}
+.pbtag{margin:0 0 6px;font-size:11.5px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;color:#3a5c9a}
+.pblead{margin:0 0 8px;font-size:13.5px;line-height:1.5;color:#32476e}
+.pbhow{margin:0;font-size:13px;line-height:1.5;color:#5a6b8c}
+.pitem{border-bottom:2px dashed #f4e7d6;padding:10px 0}
+.pitem:last-child{border-bottom:none}
+.psay{font-size:14.5px;color:var(--muted);line-height:1.4;margin-bottom:4px}
+.pdone{font-size:16px;font-weight:800;color:#0f6b5c;line-height:1.35;margin-bottom:6px}
+.plab{display:inline-block;font-size:10px;letter-spacing:.7px;text-transform:uppercase;
+  color:#b9a795;font-weight:900;margin-right:6px}
+
+/* ---------- game bits ---------- */
+.prompt{text-align:center}
+.pe{font-size:36px;display:block;line-height:1.1;margin-bottom:4px}
+.pru{font-size:19px;font-weight:800;color:var(--muted)}
+.mask{text-align:center;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:31px;
+  font-weight:700;letter-spacing:.2em;margin:12px 0 4px;word-break:break-word;min-height:42px}
+.mask .off{color:#d8c3a6}
+.typ{width:100%;font:inherit;font-size:21px;font-weight:800;text-align:center;padding:12px;
+  border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);margin-top:10px}
+.typ:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px #cdeee7}
+.typ.bad{border-color:#f19c7e;background:#fdeee8;animation:shake .3s}
+.typ.good{border-color:#9fdfc7;background:#eafaf3;color:var(--good)}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.hintline{min-height:20px;font-size:14px;font-weight:700;color:var(--muted);margin:10px 0 0;text-align:center}
+.hintline.good{color:var(--good)}
+.hintline.bad{color:var(--bad)}
+.prog{font-size:12.5px;font-weight:800;color:var(--muted);text-align:center;margin:6px 0 0;
+  letter-spacing:.3px;text-transform:uppercase}
+.rowgap{display:flex;gap:8px;margin-top:10px}
+.rowgap .btn{flex:1}
+
+/* pairs */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 0;border-bottom:2px dashed #f6e9d8}
+.pair:last-child{border-bottom:none}
+.pcol{font-size:14.5px;line-height:1.4}
+.pcol.b{font-weight:800;color:#0f6b5c}
+.plabel{display:block;font-size:10.5px;letter-spacing:.7px;text-transform:uppercase;
+  color:#b9a795;font-weight:800;margin-bottom:2px}
+.prow{grid-column:1 / -1;display:flex;align-items:center;gap:10px;margin-top:2px}
+.snd{font:inherit;font-size:15px;border:2px solid var(--line);background:#fff;border-radius:10px;
+  padding:4px 10px;cursor:pointer;box-shadow:0 2px 0 rgba(190,150,110,.3)}
+.snd:active{transform:translateY(2px);box-shadow:none}
+.chk{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--teal)}
+
+/* race */
+.racebar{height:9px;border-radius:99px;background:#f2e3cf;overflow:hidden;margin:0 0 10px}
+.racebar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ffc233,#ff7a3d);
+  border-radius:99px;transition:width .1s linear}
+.racetop{display:flex;justify-content:space-between;font-size:13px;font-weight:800;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.racetop b{font-size:19px;color:var(--ink)}
+.raceword{text-align:center;font-size:30px;font-weight:900;letter-spacing:-.5px;margin:10px 0 0;
+  min-height:40px}
+.raceword .fl{color:var(--bad)}
+.endbox{background:#eafaf3;border:2px solid #9fdfc7;border-radius:16px;padding:14px;text-align:center;
+  margin-top:12px}
+.endbox b{display:block;font-size:30px;color:var(--good);line-height:1.1}
+.endbox span{font-size:14px;color:var(--muted);font-weight:700}
+
+/* blanks */
+.blank-line{font-size:15.5px;line-height:2.3;margin:0 0 6px}
+.blank-line input{font:inherit;font-weight:800;font-size:15px;width:118px;text-align:center;
+  padding:6px 8px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.blank-line input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px #cdeee7}
+.blank-line input:disabled{background:#f7f2e9;color:#8a7a6a}
+.blank-line .bh{color:#b9a795;font-size:13px;font-weight:700}
+.blank-line .bm{font-weight:900;margin-left:4px}
+.blank-line .bm.ok{color:var(--teal)}
+
+/* choose */
+.opts{display:grid;gap:9px;margin-top:12px}
+.opt{font:inherit;font-weight:800;font-size:17px;padding:13px;border-radius:14px;
+  border:2px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:0 3px 0 rgba(190,150,110,.28)}
+.opt:active{transform:translateY(2px);box-shadow:none}
+.opt.right{background:#e9f8f1;border-color:#93ddc0;color:#0e6b52}
+.opt.wrong{background:#fdeee8;border-color:#f5b39a;color:#a33c17}
+.opt:disabled{cursor:default;box-shadow:none}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(43,33,24,.5);backdrop-filter:blur(4px)}
+.modal.on{display:flex;animation:pop .22s ease both}
+.sheet{background:#fffdf8;border-radius:24px;padding:20px;width:100%;max-width:470px;
+  max-height:90vh;overflow:auto;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.sheet h2{margin:0 0 4px;font-size:22px;letter-spacing:-.3px}
+.sheet p{margin:0 0 14px;color:var(--muted);font-size:14px}
+.daygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dbtn{font:inherit;text-align:left;border:2px solid var(--line);background:#fff;border-radius:16px;
+  padding:12px;cursor:pointer;box-shadow:0 4px 0 rgba(190,150,110,.28);color:var(--ink)}
+.dbtn:active{transform:translateY(3px);box-shadow:none}
+.dbtn .de{font-size:26px;line-height:1}
+.dbtn b{display:block;font-size:16px;margin-top:6px}
+.dbtn small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+.dbtn.today{border-color:var(--o);background:#fff4ec}
+.dbtn .tg{display:inline-block;font-size:9.5px;font-weight:900;letter-spacing:.6px;
+  text-transform:uppercase;background:var(--o);color:#fff;border-radius:6px;padding:2px 6px;margin-top:6px}
+
+/* toast + confetti */
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(16px);
+  background:#2b2118;color:#fff8ee;padding:11px 16px;border-radius:12px;font-size:14px;
+  font-weight:700;opacity:0;transition:opacity .22s,transform .22s;z-index:90;pointer-events:none;
+  max-width:88vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.confetti{position:absolute;top:-30px;font-size:22px;animation:fall 1.6s ease-in forwards}
+@keyframes fall{to{transform:translateY(106vh) rotate(240deg);opacity:.12}}
+
+.foot{text-align:center;margin:18px 0 0;font-size:12.5px;color:var(--muted)}
+.foot button{font:inherit;font-size:12.5px;background:none;border:none;color:var(--muted);
+  text-decoration:underline;cursor:pointer;padding:4px}
+.dayfoot{margin:0 0 18px}
+</style>
+</head>
+<body>
+<div id="fx"></div>
+<div id="toast"></div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">🗓️ Моя неделя английского
+      <span>25–28 ноября · 4 дня · 4 игры</span>
+    </div>
+    <button class="ghost" id="changeDay" type="button">Сменить день</button>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <!-- ============ DAY 1 ============ -->
+  <section class="day" data-day="1">
+    <div class="dayhead">
+      <span class="pill">Среда 25 ноября</span>
+      <h1>🔤 Буквы-потеряшки</h1>
+      <p class="sub">Игра → задание → флешкарты. Около 12 минут.</p>
+    </div>
+
+    <div class="card hero">
+      <div class="qhead"><span class="step">Шаг 1</span> Игра<span class="mins">5 мин</span></div>
+      <div id="g1prompt" class="prompt"></div>
+      <div id="g1mask" class="mask"></div>
+      <input id="g1in" class="typ" autocomplete="off" spellcheck="false" placeholder="напечатай слово">
+      <div class="rowgap"><button class="btn" id="g1check" type="button">Проверить</button></div>
+      <p class="hintline" id="g1hint"></p>
+      <p class="prog" id="g1prog"></p>
+      <div id="g1end" hidden></div>
+    </div>
+
+    <div class="card">
+      <div class="qhead"><span class="step">Шаг 2</span> Задание · пары вслух<span class="mins">3 мин</span></div>
+      <p class="small">Прочитай обе фразы вслух. Нажми 🔊, чтобы услышать вторую. Отметь каждую пару.</p>
+      <div id="pairs"></div>
+    </div>
+
+    <div class="card mint quizslot"></div>
+    <div class="dayfoot"><button class="btn ghost2" data-finish="1" type="button">День готов ✓</button></div>
+  </section>
+
+  <!-- ============ DAY 2 ============ -->
+  <section class="day" data-day="2">
+    <div class="dayhead">
+      <span class="pill">Четверг 26 ноября</span>
+      <h1>🎧 Диктант на слух</h1>
+      <p class="sub">Слушай и печатай → поговори с родителями → флешкарты.</p>
+    </div>
+
+    <div class="card hero">
+      <div class="qhead"><span class="step">Шаг 1</span> Игра<span class="mins">6 мин</span></div>
+      <p class="small">Нажми кнопку и напечатай слово, которое услышала. Можно слушать сколько нужно.</p>
+      <button class="btn teal" id="g2play" type="button">🔊 Слушай слово</button>
+      <input id="g2in" class="typ" autocomplete="off" spellcheck="false" placeholder="напечатай слово">
+      <div class="rowgap">
+        <button class="btn" id="g2check" type="button">Проверить</button>
+        <button class="btn ghost2" id="g2hint" type="button">Подсказка</button>
+      </div>
+      <p class="hintline" id="g2hintline"></p>
+      <p class="prog" id="g2prog"></p>
+      <div id="g2end" hidden></div>
+    </div>
+
+    <div class="card">
+      <div class="qhead"><span class="step">Шаг 2</span> Задание · поговори с родителями<span class="mins">4 мин</span></div>
+      <p class="small">Отдай телефон маме или папе — они прочитают тебе начало, а ты закончишь фразу. Ничего печатать не надо.</p>
+
+      <div class="parentbox">
+        <p class="pbtag">👨‍👩‍👧 Для родителей</p>
+        <p class="pblead">Прочитайте вслух фразу слева и попросите Сашу закончить её одним словом. Правильный ответ — справа. Ошибку не исправляйте и не подсказывайте: просто отметьте галочкой и идите дальше.</p>
+        <p class="pbhow"><b>Как проверять:</b> важно только окончание глагола. Если получилось «she get up» — просто повторите фразу ещё раз, ничего не объясняя.</p>
+      </div>
+
+      <div id="parentItems"></div>
+
+      <p class="hintline" id="parentMsg">0 из 6 отмечено</p>
+      <button class="btn ghost2" id="parentDone" type="button" disabled>Готово ✓</button>
+    </div>
+
+    <div class="card mint quizslot"></div>
+    <div class="dayfoot"><button class="btn ghost2" data-finish="2" type="button">День готов ✓</button></div>
+  </section>
+
+  <!-- ============ DAY 3 ============ -->
+  <section class="day" data-day="3">
+    <div class="dayhead">
+      <span class="pill">Пятница 27 ноября</span>
+      <h1>⌨️ Гонка 60 секунд</h1>
+      <p class="sub">Пишем быстро → 8 пропусков → флешкарты.</p>
+    </div>
+
+    <div class="card hero">
+      <div class="qhead"><span class="step">Шаг 1</span> Игра<span class="mins">5 мин</span></div>
+      <div class="racebar"><i id="raceBar"></i></div>
+      <div class="racetop"><span>Время <b id="raceTime">60</b></span><span>Слова <b id="raceScore">0</b></span></div>
+      <div class="raceword" id="raceWord">Готова?</div>
+      <input id="raceIn" class="typ" autocomplete="off" spellcheck="false" placeholder="печатай и жми Enter" disabled>
+      <div class="rowgap"><button class="btn" id="raceStart" type="button">Старт!</button></div>
+      <p class="hintline" id="raceHint">Русское слово сверху — английское печатай.</p>
+      <p class="prog" id="raceBest"></p>
+    </div>
+
+    <div class="card">
+      <div class="qhead"><span class="step">Шаг 2</span> Задание · 8 пропусков<span class="mins">6 мин</span></div>
+      <p class="small">Одна попытка. Проверки не будет — просто напиши, как думаешь. Разберём в субботу.</p>
+      <div id="blanks"></div>
+      <p class="hintline" id="blankMsg"></p>
+    </div>
+
+    <div class="card mint quizslot"></div>
+    <div class="dayfoot"><button class="btn ghost2" data-finish="3" type="button">День готов ✓</button></div>
+  </section>
+
+  <!-- ============ DAY 4 ============ -->
+  <section class="day" data-day="4">
+    <div class="dayhead">
+      <span class="pill">Суббота 28 ноября</span>
+      <h1>🏆 Финал</h1>
+      <p class="sub">Перед уроком. 10 вопросов и охота за словами.</p>
+    </div>
+
+    <div class="card hero">
+      <div class="qhead"><span class="step">Шаг 1</span> Игра · 10 вопросов<span class="mins">7 мин</span></div>
+      <div class="racetop"><span id="fProg">Вопрос 1 из 10</span><span>Верно <b id="fScore">0</b></span></div>
+      <div id="fBody"></div>
+    </div>
+
+    <div class="card">
+      <div class="qhead"><span class="step">Шаг 2</span> Задание · охота за <b style="color:var(--o)">-es</b><span class="mins">4 мин</span></div>
+      <p class="small">Найди в любой английской книге или учебнике <b>три слова, которые заканчиваются на -es</b>. Просто спиши их. Правило объяснять не надо — завтра в школе.</p>
+      <div class="blank-line">1. <input id="es1" autocomplete="off" spellcheck="false" placeholder="word"></div>
+      <div class="blank-line">2. <input id="es2" autocomplete="off" spellcheck="false" placeholder="word"></div>
+      <div class="blank-line">3. <input id="es3" autocomplete="off" spellcheck="false" placeholder="word"></div>
+      <p class="hintline" id="esMsg"></p>
+    </div>
+
+    <div class="card mint quizslot"></div>
+    <div class="dayfoot"><button class="btn ghost2" data-finish="4" type="button">День готов ✓</button></div>
+  </section>
+
+  <p class="foot">
+    Прогресс хранится на этом устройстве.
+    <button id="exportBtn" type="button">Отчёт для учителя</button>
+  </p>
+</div>
+
+<!-- ============ DAY PICKER ============ -->
+<div class="modal on" id="dayPick">
+  <div class="sheet">
+    <h2>Какой сегодня день?</h2>
+    <p>Нажми на день — откроется задание на сегодня.</p>
+    <div class="daygrid" id="daygrid"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* =========================================================
+   QUIZLET SET
+   ========================================================= */
+const QUIZLET_URL = "https://quizlet.com/1238531450/massive-collection-of-vocabulary-sasha-flash-cards/";
+const QUIZLET_NAME = "Massive Collection of Vocabulary – Sasha";
+const QUIZLET_COUNT = 41;
+/* ======================================================= */
+
+var $ = function(s,r){ return (r||document).querySelector(s); };
+var $$ = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+  });
+}
+function norm(s){
+  return String(s||"").toLowerCase().replace(/[’']/g,"'").replace(/\s+/g," ").trim();
+}
+function toast(msg){
+  var t=$('#toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._h); t._h=setTimeout(function(){ t.classList.remove('on'); },3000);
+}
+function burst(n){
+  var box=$('#fx'), chars=['✨','⭐','🎉','🍊','💚','🏆'];
+  n=n||14;
+  for(var i=0;i<n;i++){
+    var s=document.createElement('span');
+    s.className='confetti'; s.textContent=chars[i%chars.length];
+    s.style.left=(6+Math.random()*88)+'vw';
+    s.style.animationDelay=(Math.random()*.22)+'s';
+    box.appendChild(s);
+    (function(el){ setTimeout(function(){ el.remove(); },1900); })(s);
+  }
+}
+
+/* ---------- speech ---------- */
+var voice=null;
+function pickVoice(){
+  try{
+    var vs=window.speechSynthesis?speechSynthesis.getVoices():[];
+    for(var i=0;i<vs.length;i++){
+      if(/^en[-_](GB|US)/i.test(vs[i].lang)){ voice=vs[i]; return; }
+    }
+  }catch(e){}
+}
+if(window.speechSynthesis){
+  pickVoice();
+  speechSynthesis.onvoiceschanged=pickVoice;
+}
+function speak(text,rate){
+  try{
+    if(!window.speechSynthesis) return;
+    var u=new SpeechSynthesisUtterance(text);
+    u.lang='en-GB'; u.rate=rate||0.88; u.pitch=1;
+    if(voice) u.voice=voice;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+/* ---------- state ---------- */
+var KEY='sasha-week-25-28-v1';
+var S={day:1,done:{},best:{},answers:{},runs:{},fc:{}};
+try{
+  var raw=localStorage.getItem(KEY);
+  if(raw){ var p=JSON.parse(raw); if(p&&typeof p==='object') S=Object.assign(S,p); }
+}catch(e){}
+if(!S.fc) S.fc={};
+if(!S.answers) S.answers={};
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+
+var DAYS=[
+  {n:1,tab:'Ср 25',emoji:'🔤',game:'Буквы-потеряшки'},
+  {n:2,tab:'Чт 26',emoji:'🎧',game:'Диктант на слух'},
+  {n:3,tab:'Пт 27',emoji:'⌨️',game:'Гонка 60 секунд'},
+  {n:4,tab:'Сб 28',emoji:'🏆',game:'Финал'}
+];
+
+/* ---------- tabs ---------- */
+var tabsEl=$('#tabs');
+DAYS.forEach(function(d){
+  var b=document.createElement('button');
+  b.type='button'; b.className='tab'; b.dataset.day=d.n;
+  b.innerHTML='<span class="te">'+d.emoji+'</span><span>'+d.tab+'</span><span class="ok"></span>';
+  b.addEventListener('click', function(){ openDay(d.n); });
+  tabsEl.appendChild(b);
+});
+
+function openDay(n){
+  if(!n) return;
+  S.day=n; save();
+  $$('.day').forEach(function(sec){ sec.classList.toggle('on', +sec.dataset.day===n); });
+  $$('.tab').forEach(function(b){
+    b.classList.toggle('on', +b.dataset.day===n);
+    b.querySelector('.ok').textContent=S.done[b.dataset.day]?'✓':'';
+  });
+  closeModal();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------- day picker ---------- */
+function isToday(n){
+  var t=new Date();
+  return t.getFullYear()===2026 && t.getMonth()===10 && t.getDate()===24+n;
+}
+(function buildModal(){
+  var grid=$('#daygrid');
+  DAYS.forEach(function(d){
+    var b=document.createElement('button');
+    b.type='button'; b.className='dbtn'+(isToday(d.n)?' today':'');
+    b.innerHTML='<span class="de">'+d.emoji+'</span><b>'+d.tab+'</b><small>'+d.game+'</small>'+
+      (isToday(d.n)?'<span class="tg">сегодня</span>':'');
+    b.addEventListener('click', function(){ openDay(d.n); });
+    grid.appendChild(b);
+  });
+})();
+function openModal(){ $('#dayPick').classList.add('on'); }
+function closeModal(){ $('#dayPick').classList.remove('on'); }
+$('#changeDay').addEventListener('click', openModal);
+$('#dayPick').addEventListener('click', function(e){
+  if(e.target===this) closeModal();
+});
+
+/* ---------- quiz card ---------- */
+function quizHTML(day){
+  return ''+
+  '<div class="qhead"><span class="step">Шаг 3</span> Флешкарты<span class="mins">5–7 мин</span></div>'+
+  '<p class="setname">'+QUIZLET_NAME+' · '+QUIZLET_COUNT+' карточек</p>'+
+  '<a class="btn purple" data-q href="'+QUIZLET_URL+'" target="_blank" rel="noopener">'+
+    'Открыть Quizlet →</a>'+
+  '<div class="algo">'+
+    '<p class="algo-t">В наборе: <b>Flashcards</b> → включи <b>Spaced Repetition</b></p>'+
+    '<div class="srrow">'+
+      '<div class="sr repeat">Repeat<span>&lt;1 мин</span></div>'+
+      '<div class="sr hard">Hard<span>≤5 мин</span></div>'+
+      '<div class="sr okay">Okay<span>≤10 мин</span></div>'+
+      '<div class="sr easy">Easy<span>4 дня</span></div>'+
+    '</div>'+
+    '<p class="srnote">Жми только Repeat или Okay. Две кнопки. Всё.</p>'+
+    '<ul class="rules">'+
+      '<li><b>Repeat</b> — не помнишь. Слово вернётся через минуту. Это нормально, не стыдно.</li>'+
+      '<li><b>Okay</b> — помнишь. Вернётся через 10 минут.</li>'+
+      '<li class="no">Hard и Easy — не нажимай. Easy отправит слово на 4 дня вперёд, и ты его забудешь. Hard просто засорит очередь.</li>'+
+    '</ul>'+
+    '<p class="algowarn">⚠️ Алгоритм считает каждое нажатие. Okay «на всякий случай» — и слово вернётся слишком поздно. Сомневаешься — жми Repeat.</p>'+
+  '</div>'+
+  '<label class="fc"><input type="checkbox" data-fc="'+day+'">'+
+    '<span>Прошла весь набор · 0 / '+QUIZLET_COUNT+'</span></label>';
+}
+$$('.quizslot').forEach(function(el){
+  var day=el.closest('.day').dataset.day;
+  el.innerHTML=quizHTML(day);
+  var cb=el.querySelector('[data-fc]');
+  cb.checked=!!S.fc[day];
+  cb.addEventListener('change', function(){
+    S.fc[day]=cb.checked; save();
+    if(cb.checked){ burst(12); toast('Флешкарты готовы ✓'); }
+  });
+});
+document.addEventListener('click', function(e){
+  var a=e.target.closest('[data-q]');
+  if(a && !QUIZLET_URL){
+    e.preventDefault();
+    toast('Ссылка на Quizlet скоро появится — спроси учителя 🙂');
+  }
+});
+
+/* ---------- shared day-1 pairs ---------- */
+var PAIRS=[
+  ['I get up early.','My brother gets up early.'],
+  ['I walk to school.','My sister walks to school.'],
+  ['I read in bed.','My dad reads in bed.'],
+  ['I play in the garden.','The dog plays in the garden.'],
+  ['I eat breakfast at eight.','My mum eats breakfast at eight.'],
+  ['I live in Moscow.','Anna lives in Moscow.'],
+  ['I sing in the shower.','My sister sings in the shower.'],
+  ['I work on Sundays.','My dad works on Sundays.']
+];
+(function buildPairs(){
+  var host=$('#pairs');
+  PAIRS.forEach(function(p){
+    var row=document.createElement('div');
+    row.className='pair';
+    row.innerHTML=
+      '<div class="pcol"><span class="plabel">I</span>'+esc(p[0])+'</div>'+
+      '<div class="pcol b"><span class="plabel">он / она</span>'+esc(p[1])+'</div>'+
+      '<div class="prow">'+
+        '<button class="snd" type="button">🔊</button>'+
+        '<label class="chk"><input type="checkbox"><span>сказала вслух</span></label>'+
+      '</div>';
+    row.querySelector('.snd').addEventListener('click', function(){ speak(p[1]); });
+    host.appendChild(row);
+  });
+})();
+
+/* =========================================================
+   GAME 1 — hidden letters
+   ========================================================= */
+var G1=[
+  {en:'wake up', ru:'просыпаться', e:'🌅'},
+  {en:'read',    ru:'читать',      e:'📖'},
+  {en:'walk',    ru:'ходить пешком', e:'🚶'},
+  {en:'play',    ru:'играть',      e:'⚽'},
+  {en:'live',    ru:'жить',        e:'🏠'},
+  {en:'sleep',   ru:'спать',       e:'😴'},
+  {en:'draw',    ru:'рисовать',    e:'🎨'},
+  {en:'evening', ru:'вечер',       e:'🌙'}
+];
+var g1={i:0,tries:0,first:0,over:false};
+
+function makeMask(w){
+  return w.split('').map(function(ch,i){
+    if(ch===' ') return ' ';
+    if(i===0) return ch;
+    return Math.random()<0.6 ? '_' : ch;
+  }).join('');
+}
+function renderG1(){
+  var it=G1[g1.i];
+  if(!it){ endG1(); return; }
+  g1.tries=0;
+  if(!it.mask) it.mask=makeMask(it.en);
+  $('#g1prompt').innerHTML='<span class="pe">'+it.e+'</span><span class="pru">'+esc(it.ru)+'</span>';
+  $('#g1mask').innerHTML=it.mask.split('').map(function(ch){
+    if(ch===' ') return '&nbsp;&nbsp;';
+    if(ch==='_') return '<span class="off">_</span>';
+    return esc(ch);
+  }).join('');
+  var inp=$('#g1in');
+  inp.value=''; inp.disabled=false; inp.className='typ';
+  $('#g1hint').textContent=''; $('#g1hint').className='hintline';
+  $('#g1prog').textContent='Слово '+(g1.i+1)+' из '+G1.length+' · с первой попытки: '+g1.first;
+  try{ inp.focus(); }catch(e){}
+}
+function checkG1(){
+  var it=G1[g1.i], inp=$('#g1in');
+  if(!it||inp.disabled) return;
+  var v=norm(inp.value);
+  if(!v) return;
+  if(v===norm(it.en)){
+    if(g1.tries===0) g1.first++;
+    inp.className='typ good'; inp.disabled=true;
+    $('#g1mask').innerHTML='<span style="color:#1f8a6d">'+esc(it.en)+'</span>';
+    $('#g1hint').textContent='Верно! ✓'; $('#g1hint').className='hintline good';
+    speak(it.en);
+    setTimeout(function(){ g1.i++; renderG1(); },820);
+  } else {
+    g1.tries++;
+    inp.className='typ bad';
+    setTimeout(function(){ inp.className='typ'; },340);
+    if(g1.tries===1){
+      $('#g1hint').textContent='Не совсем. Первая буква: '+it.en.charAt(0).toUpperCase();
+      $('#g1hint').className='hintline bad';
+    } else if(g1.tries===2){
+      $('#g1hint').textContent='Ещё раз. Сколько букв: '+it.en.replace(/ /g,'').length;
+      $('#g1hint').className='hintline bad';
+    } else {
+      inp.disabled=true;
+      $('#g1hint').textContent='Правильно: '+it.en+' — запомни!';
+      $('#g1hint').className='hintline bad';
+      setTimeout(function(){ g1.i++; renderG1(); },1500);
+    }
+  }
+}
+function endG1(){
+  g1.over=true;
+  $('#g1prompt').innerHTML='<span class="pe">🎉</span>';
+  $('#g1mask').textContent='';
+  $('#g1in').disabled=true;
+  $('#g1check').disabled=true;
+  $('#g1hint').textContent='';
+  $('#g1prog').textContent='';
+  var box=$('#g1end');
+  box.hidden=false;
+  box.innerHTML='<div class="endbox"><b>'+g1.first+' / '+G1.length+'</b>'+
+    '<span>с первой попытки</span></div>';
+  burst(16);
+  toast('Игра пройдена! 🎉');
+}
+$('#g1check').addEventListener('click', checkG1);
+$('#g1in').addEventListener('keydown', function(e){
+  if(e.key==='Enter'){ e.preventDefault(); checkG1(); }
+});
+
+/* =========================================================
+   GAME 2 — dictation
+   ========================================================= */
+var G2=[
+  {en:'have breakfast', ru:'завтракать', e:'🍳'},
+  {en:'drink',   ru:'пить',      e:'🥛'},
+  {en:'sing',    ru:'петь',      e:'🎤'},
+  {en:'run',     ru:'бегать',    e:'🏃'},
+  {en:'swim',    ru:'плавать',   e:'🏊'},
+  {en:'help',    ru:'помогать',  e:'🤝'},
+  {en:'start',   ru:'начинать',  e:'▶️'},
+  {en:'usually', ru:'обычно',    e:'🔁'}
+];
+var g2={i:0,tries:0,first:0};
+
+function renderG2(){
+  var it=G2[g2.i];
+  if(!it){ endG2(); return; }
+  g2.tries=0;
+  var inp=$('#g2in');
+  inp.value=''; inp.disabled=false; inp.className='typ';
+  $('#g2hintline').textContent=''; $('#g2hintline').className='hintline';
+  $('#g2prog').textContent='Слово '+(g2.i+1)+' из '+G2.length+' · с первой попытки: '+g2.first;
+  speak(it.en);
+  try{ inp.focus(); }catch(e){}
+}
+function checkG2(){
+  var it=G2[g2.i], inp=$('#g2in');
+  if(!it||inp.disabled) return;
+  var v=norm(inp.value);
+  if(!v) return;
+  if(v===norm(it.en)){
+    if(g2.tries===0) g2.first++;
+    inp.className='typ good'; inp.disabled=true;
+    $('#g2hintline').textContent='Верно! '+it.en+' = '+it.ru;
+    $('#g2hintline').className='hintline good';
+    burst(6);
+    setTimeout(function(){ g2.i++; renderG2(); },1000);
+  } else {
+    g2.tries++;
+    inp.className='typ bad';
+    setTimeout(function(){ inp.className='typ'; },340);
+    if(g2.tries>=2){
+      $('#g2hintline').textContent='Слушай ещё раз и смотри подсказку.';
+      $('#g2hintline').className='hintline bad';
+    } else {
+      $('#g2hintline').textContent='Не совсем. Попробуй ещё.';
+      $('#g2hintline').className='hintline bad';
+    }
+    if(g2.tries>=3){
+      inp.disabled=true;
+      $('#g2hintline').textContent='Это было: '+it.en;
+      setTimeout(function(){ g2.i++; renderG2(); },1600);
+    }
+  }
+}
+function endG2(){
+  $('#g2play').disabled=true;
+  $('#g2check').disabled=true;
+  $('#g2in').disabled=true;
+  $('#g2prog').textContent='';
+  var box=$('#g2end');
+  box.hidden=false;
+  box.innerHTML='<div class="endbox"><b>'+g2.first+' / '+G2.length+'</b>'+
+    '<span>с первой попытки</span></div>';
+  burst(16);
+  toast('Диктант закончен! 🎧');
+}
+$('#g2play').addEventListener('click', function(){
+  var it=G2[g2.i];
+  if(it) speak(it.en);
+});
+$('#g2check').addEventListener('click', checkG2);
+$('#g2in').addEventListener('keydown', function(e){
+  if(e.key==='Enter'){ e.preventDefault(); checkG2(); }
+});
+$('#g2hint').addEventListener('click', function(){
+  var it=G2[g2.i];
+  if(!it) return;
+  $('#g2hintline').textContent=it.ru+' · '+it.en.charAt(0).toUpperCase()+
+    ' + '+(it.en.length-1)+' букв';
+  $('#g2hintline').className='hintline';
+  speak(it.en,0.7);
+});
+
+/* =========================================================
+   DAY 2 — parent-led speaking check
+   ========================================================= */
+var PARENT=[
+  {say:'I get up early. Now you — my brother…',
+   done:'My brother gets up early.'},
+  {say:'I walk to school. Now you — my sister…',
+   done:'My sister walks to school.'},
+  {say:'I read in bed. Now you — my dad…',
+   done:'My dad reads in bed.'},
+  {say:'I play in the garden. Now you — the dog…',
+   done:'The dog plays in the garden.'},
+  {say:'I eat breakfast at eight. Now you — my mum…',
+   done:'My mum eats breakfast at eight.'},
+  {say:'I live in Moscow. Now you — Anna…',
+   done:'Anna lives in Moscow.'}
+];
+
+(function buildParent(){
+  var host=$('#parentItems');
+  if(!host) return;
+  PARENT.forEach(function(it,i){
+    var row=document.createElement('div');
+    row.className='pitem';
+    row.innerHTML=
+      '<div class="psay">'+esc(it.say)+'</div>'+
+      '<div class="pdone"><span class="plab">ответ</span>'+esc(it.done)+'</div>'+
+      '<label class="chk"><input type="checkbox" data-p="'+i+'">'+
+        '<span>сказала правильно</span></label>';
+    host.appendChild(row);
+    var cb=$('input[data-p="'+i+'"]', row);
+    cb.checked=!!S.answers['p'+i];
+    cb.addEventListener('change', function(){
+      S.answers['p'+i]=cb.checked;
+      save();
+      paintParent();
+      if(cb.checked) speak(it.done);
+    });
+  });
+  paintParent();
+})();
+
+function paintParent(){
+  var n=PARENT.filter(function(_,i){ return S.answers['p'+i]; }).length;
+  var msg=$('#parentMsg');
+  var btn=$('#parentDone');
+  msg.textContent=n+' из '+PARENT.length+' отмечено';
+  msg.className = n===PARENT.length ? 'hintline good' : 'hintline';
+  btn.disabled = n<PARENT.length;
+  if(n===PARENT.length){
+    msg.textContent='Все шесть — отлично! Позови родителей ещё раз в пятницу.';
+  }
+}
+$('#parentDone').addEventListener('click', function(){
+  burst(18);
+  toast('Отлично! Родители подтвердили ✓');
+});
+
+/* =========================================================
+   GAME 3 — 60 second race
+   ========================================================= */
+var RACE=[
+  {en:'read',ru:'читать'}, {en:'walk',ru:'ходить'}, {en:'play',ru:'играть'},
+  {en:'live',ru:'жить'}, {en:'work',ru:'работать'}, {en:'sleep',ru:'спать'},
+  {en:'eat',ru:'есть'}, {en:'drink',ru:'пить'}, {en:'sing',ru:'петь'},
+  {en:'run',ru:'бегать'}, {en:'swim',ru:'плавать'}, {en:'draw',ru:'рисовать'},
+  {en:'help',ru:'помогать'}, {en:'start',ru:'начинать'}, {en:'want',ru:'хотеть'},
+  {en:'morning',ru:'утро'}, {en:'evening',ru:'вечер'}, {en:'school',ru:'школа'},
+  {en:'home',ru:'дом'}, {en:'early',ru:'рано'}, {en:'always',ru:'всегда'},
+  {en:'usually',ru:'обычно'}, {en:'never',ru:'никогда'}
+];
+var race={on:false,score:0,left:60,timer:null,cur:null,locked:false};
+
+function pickRace(){
+  var n=RACE[Math.floor(Math.random()*RACE.length)];
+  if(race.cur && n.en===race.cur.en && RACE.length>1) return pickRace();
+  return n;
+}
+function paintRaceBest(){
+  var b=S.best['g3']||0;
+  $('#raceBest').textContent = b ? 'Твой рекорд: '+b : 'Рекорда пока нет';
+}
+function startRace(){
+  race.on=true; race.score=0; race.left=60; race.locked=false;
+  race.cur=pickRace();
+  $('#raceScore').textContent='0';
+  $('#raceTime').textContent='60';
+  $('#raceBar').style.width='100%';
+  $('#raceWord').innerHTML=esc(race.cur.ru);
+  $('#raceHint').textContent='Печатай английское слово. Enter — ответ.';
+  $('#raceHint').className='hintline';
+  var inp=$('#raceIn');
+  inp.disabled=false; inp.value=''; inp.className='typ';
+  try{ inp.focus(); }catch(e){}
+  clearInterval(race.timer);
+  race.timer=setInterval(function(){
+    race.left-=0.1;
+    if(race.left<=0){ race.left=0; endRace(); return; }
+    $('#raceTime').textContent=Math.ceil(race.left);
+    $('#raceBar').style.width=(race.left/60*100)+'%';
+  },100);
+}
+function endRace(){
+  clearInterval(race.timer);
+  race.on=false;
+  $('#raceIn').disabled=true;
+  $('#raceTime').textContent='0';
+  $('#raceBar').style.width='0%';
+  var best=Math.max(S.best['g3']||0, race.score);
+  S.best['g3']=best;
+  S.runs['g3']=(S.runs['g3']||0)+1;
+  save();
+  paintRaceBest();
+  $('#raceWord').innerHTML='<span style="color:#1f8a6d">Финиш!</span>';
+  $('#raceHint').textContent='Ещё раз? Нажми Старт.';
+  $('#raceStart').textContent='Ещё раз!';
+  burst(16);
+  toast('60 секунд: '+race.score+' слов');
+}
+function checkRace(){
+  if(!race.on || race.locked || !race.cur) return;
+  var inp=$('#raceIn');
+  var v=norm(inp.value);
+  if(!v) return;
+  if(v===norm(race.cur.en)){
+    race.score++;
+    $('#raceScore').textContent=race.score;
+    inp.value='';
+    race.cur=pickRace();
+    $('#raceWord').innerHTML=esc(race.cur.ru);
+  } else {
+    race.locked=true;
+    inp.className='typ bad';
+    $('#raceWord').innerHTML='<span class="fl">'+esc(race.cur.en)+'</span>';
+    setTimeout(function(){
+      race.locked=false;
+      inp.value=''; inp.className='typ';
+      race.cur=pickRace();
+      if(race.on) $('#raceWord').innerHTML=esc(race.cur.ru);
+    },950);
+  }
+}
+$('#raceStart').addEventListener('click', startRace);
+$('#raceIn').addEventListener('keydown', function(e){
+  if(e.key==='Enter'){ e.preventDefault(); checkRace(); }
+});
+
+/* =========================================================
+   DAY 3 — 8 blanks, one attempt, no correction
+   ========================================================= */
+var D3=[
+  {pre:'My sister ', hint:'get up', post:' at seven.'},
+  {pre:'The children ', hint:'play', post:' in the park.'},
+  {pre:'Our cat ', hint:'sleep', post:' on the sofa.'},
+  {pre:'We ', hint:'walk', post:' to school together.'},
+  {pre:'My dad ', hint:'drink', post:' tea in the morning.'},
+  {pre:'My friends ', hint:'like', post:' pizza.'},
+  {pre:'Tom ', hint:'want', post:' a new bike.'},
+  {pre:'I ', hint:'start', post:' school at eight.'}
+];
+var lockedBlanks=0;
+(function buildBlanks(){
+  var host=$('#blanks');
+  D3.forEach(function(it,i){
+    var p=document.createElement('p');
+    p.className='blank-line';
+    p.innerHTML=esc(it.pre)+'<input autocomplete="off" spellcheck="false" data-b="'+i+'">'+
+      '<span class="bh"> ('+esc(it.hint)+')</span>'+esc(it.post)+
+      '<span class="bm" data-m="'+i+'"></span>';
+    host.appendChild(p);
+    var inp=$('input[data-b="'+i+'"]', p);
+    inp.addEventListener('keydown', function(e){
+      if(e.key==='Enter'){ e.preventDefault(); lockBlank(i,inp); }
+    });
+    inp.addEventListener('blur', function(){ if(inp.value.trim()) lockBlank(i,inp); });
+  });
+})();
+function lockBlank(i,inp){
+  if(inp.disabled) return;
+  var v=inp.value.trim();
+  if(!v) return;
+  inp.disabled=true;
+  var m=$('.bm[data-m="'+i+'"]');
+  m.textContent='✓'; m.className='bm ok';
+  S.answers['d3-'+i]={text:v, at:new Date().toISOString()};
+  save();
+  lockedBlanks++;
+  $('#blankMsg').textContent='Записано: '+lockedBlanks+' из '+D3.length;
+  $('#blankMsg').className='hintline';
+  if(lockedBlanks===D3.length){
+    $('#blankMsg').textContent='Все 8 записаны. Разберём в субботу — не меняй ответы.';
+    $('#blankMsg').className='hintline good';
+    burst(14);
+    toast('Всё записано 👍');
+  }
+}
+
+/* =========================================================
+   DAY 4 — final quiz
+   ========================================================= */
+var FINAL=[
+  {t:'type', ru:'вставать', e:'⏰', a:'get up'},
+  {t:'type', ru:'рано', e:'🌞', a:'early'},
+  {t:'choose', q:'My brother ___ up early.', o:['get up','gets up'], a:'gets up'},
+  {t:'type', ru:'завтракать', e:'🍳', a:'have breakfast'},
+  {t:'choose', q:'The children ___ in the park.', o:['play','plays'], a:'play'},
+  {t:'type', ru:'обычно', e:'🔁', a:'usually'},
+  {t:'choose', q:'Our cat ___ on the sofa.', o:['sleep','sleeps'], a:'sleeps'},
+  {t:'type', ru:'школа', e:'🏫', a:'school'},
+  {t:'choose', q:'My parents ___ on Sundays.', o:['work','works'], a:'work'},
+  {t:'type', ru:'вечер', e:'🌙', a:'evening'}
+];
+var fq={i:0,score:0,locked:false};
+
+function renderFinal(){
+  var box=$('#fBody');
+  if(fq.i>=FINAL.length){ endFinal(); return; }
+  var it=FINAL[fq.i];
+  fq.locked=false;
+  $('#fProg').textContent='Вопрос '+(fq.i+1)+' из '+FINAL.length;
+  $('#fScore').textContent=fq.score;
+
+  if(it.t==='type'){
+    box.innerHTML='<div class="prompt"><span class="pe">'+it.e+'</span>'+
+      '<span class="pru">'+esc(it.ru)+'</span></div>'+
+      '<input id="fIn" class="typ" autocomplete="off" spellcheck="false" placeholder="напечатай по-английски">'+
+      '<div class="rowgap"><button class="btn" id="fCheck" type="button">Ответить</button></div>'+
+      '<p class="hintline" id="fHint"></p>';
+    var inp=$('#fIn');
+    inp.addEventListener('keydown', function(e){
+      if(e.key==='Enter'){ e.preventDefault(); checkFinal(inp.value); }
+    });
+    $('#fCheck').addEventListener('click', function(){ checkFinal($('#fIn').value); });
+    try{ inp.focus(); }catch(e){}
+  } else {
+    box.innerHTML='<p style="font-size:19px;font-weight:800;text-align:center;line-height:1.5;margin:6px 0 0">'+
+      esc(it.q)+'</p><div class="opts" id="fOpts"></div><p class="hintline" id="fHint"></p>';
+    var opts=$('#fOpts');
+    it.o.forEach(function(o){
+      var b=document.createElement('button');
+      b.type='button'; b.className='opt'; b.textContent=o;
+      b.addEventListener('click', function(){ chooseFinal(o,b); });
+      opts.appendChild(b);
+    });
+  }
+}
+function checkFinal(v){
+  if(fq.locked) return;
+  var it=FINAL[fq.i];
+  var val=norm(v);
+  if(!val) return;
+  fq.locked=true;
+  var input=$('#fIn');
+  if(val===norm(it.a)){
+    fq.score++; $('#fScore').textContent=fq.score;
+    input.className='typ good';
+    $('#fHint').textContent='Верно! ✓'; $('#fHint').className='hintline good';
+    setTimeout(function(){ fq.i++; renderFinal(); },850);
+  } else {
+    input.className='typ bad';
+    $('#fHint').textContent='Правильно: '+it.a;
+    $('#fHint').className='hintline bad';
+    setTimeout(function(){ fq.i++; renderFinal(); },1500);
+  }
+}
+function chooseFinal(o,btn){
+  if(fq.locked) return;
+  var it=FINAL[fq.i];
+  fq.locked=true;
+  $$('#fOpts .opt').forEach(function(b){
+    b.disabled=true;
+    if(b.textContent===it.a) b.classList.add('right');
+  });
+  if(o===it.a){
+    fq.score++; $('#fScore').textContent=fq.score;
+    $('#fHint').textContent='Верно! ✓'; $('#fHint').className='hintline good';
+  } else {
+    btn.classList.add('wrong');
+    $('#fHint').textContent='Правильно: '+it.a;
+    $('#fHint').className='hintline bad';
+  }
+  setTimeout(function(){ fq.i++; renderFinal(); },1150);
+}
+function endFinal(){
+  $('#fProg').textContent='Готово';
+  $('#fBody').innerHTML='<div class="endbox"><b>'+fq.score+' / '+FINAL.length+'</b>'+
+    '<span>'+(fq.score>=9?'Отлично! Ты готова к уроку.'
+      :(fq.score>=6?'Хорошо! Повтори слова, где ошиблась.'
+      :'Ещё разок — и будет отлично.'))+'</span></div>';
+  burst(22);
+  S.best['d4']=Math.max(S.best['d4']||0,fq.score);
+  save();
+  toast('Финал: '+fq.score+' из '+FINAL.length);
+}
+
+/* ---------- day 4 collector ---------- */
+['es1','es2','es3'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('input', function(){
+    S.answers[id]=el.value;
+    save();
+    var n=['es1','es2','es3'].filter(function(k){
+      var x=document.getElementById(k);
+      return x && x.value.trim();
+    }).length;
+    $('#esMsg').textContent=n+' из 3 слов найдено';
+    if(n===3) $('#esMsg').textContent='Три слова найдены! Завтра объяснишь правило 😉';
+  });
+  if(S.answers[id]) el.value=S.answers[id];
+});
+
+/* ---------- finish day ---------- */
+$$('[data-finish]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var n=b.getAttribute('data-finish');
+    S.done[n]=true; save();
+    b.textContent='Готово ✓';
+    $$('.tab').forEach(function(t){
+      if(t.dataset.day===n) t.querySelector('.ok').textContent='✓';
+    });
+    burst(20);
+    toast('День отмечен! Отдыхай 🌟');
+  });
+});
+
+/* ---------- export ---------- */
+$('#exportBtn').addEventListener('click', function(){
+  var payload={
+    app:'Sasha homework week 25–28 Nov',
+    lesson:'Lesson 01 follow-up · plain -s',
+    exportedAt:new Date().toISOString(),
+    activeDay:S.day,
+    daysDone:S.done,
+    flashcardsDone:S.fc,
+    answers:S.answers,
+    runs:S.runs,
+    best:S.best
+  };
+  try{
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    var d=new Date(), p2=function(n){ return (n<10?'0':'')+n; };
+    a.href=url;
+    a.download='sasha-homework-'+d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())+'.json';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); },800);
+    toast('Отчёт скачан');
+  }catch(e){ toast('Скачивание заблокировано'); }
+});
+
+/* ---------- boot ---------- */
+openDay(S.day||1);
+renderG1();
+renderG2();
+paintRaceBest();
+renderFinal();
+openModal();
+})();
+</script>
+</body>
+</html>
