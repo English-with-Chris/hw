@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eef4f2">
+<title>Английская лаборатория · 29 ноября — 1 декабря</title>
+<style>
+:root{
+  --bg:#eef4f2; --ink:#12232b; --muted:#5f7780; --line:#d3e2dd;
+  --deep:#0d6b62; --deep2:#084f49; --lime:#d7f56b; --coral:#ff6b4a;
+  --good:#0f766e; --bad:#c2410c;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{
+  font:16.5px/1.5 ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(60vw 40vh at 105% -5%, #d9f2ff 0%, rgba(217,242,255,0) 60%),
+    radial-gradient(70vw 45vh at -10% 105%, #e6f9cc 0%, rgba(230,249,204,0) 55%),
+    var(--bg);
+  background-attachment:fixed;
+  padding:0 0 calc(30px + env(safe-area-inset-bottom));
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(#c9dbd5 1px,transparent 1px);
+  background-size:22px 22px;opacity:.4;
+}
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:14px 14px 0}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.brand{font-weight:800;font-size:18px;letter-spacing:-.3px;line-height:1.15}
+.brand span{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:3px}
+.ghost{margin-left:auto;font:inherit;font-size:12.5px;font-weight:700;color:var(--deep);
+  background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 11px;
+  cursor:pointer;box-shadow:0 2px 0 rgba(13,107,98,.12);white-space:nowrap}
+.ghost:active{transform:translateY(2px);box-shadow:none}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:6px;margin:0 0 12px;
+  position:sticky;top:6px;z-index:20;background:#fff;border:1px solid var(--line);
+  border-radius:14px;box-shadow:0 2px 0 rgba(13,107,98,.10);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;font:inherit;font-weight:700;font-size:13.5px;
+  border:1px solid transparent;background:transparent;color:var(--muted);
+  border-radius:10px;padding:8px 11px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.tab.on{background:var(--deep);color:#fff}
+.tab .ok{font-size:11px}
+.day{display:none}
+.day.on{display:block;animation:rise .28s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dayhead{margin:2px 0 12px}
+.pill{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:99px;
+  padding:4px 11px;font-size:11px;font-weight:800;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--deep)}
+.dayhead h1{margin:8px 0 4px;font-size:25px;letter-spacing:-.6px;line-height:1.15}
+.dayhead .sub{margin:0;color:var(--muted);font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;
+  margin:0 0 12px;box-shadow:0 2px 0 rgba(13,107,98,.09)}
+.card.hero{background:linear-gradient(180deg,#f5fdfb,#fff 50%);border-color:#bcded6}
+.card.quiz{background:linear-gradient(180deg,#fbfdf4,#fff 55%);border-color:#d9e6b8}
+.qhead{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15.5px;margin-bottom:10px}
+.step{background:var(--lime);color:#33400a;border-radius:7px;padding:3px 8px;font-size:11px;
+  font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+.mins{margin-left:auto;font-size:12px;color:var(--muted);font-weight:700}
+.small{font-size:13.5px;color:var(--muted);margin:0 0 10px;line-height:1.55}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;
+  font-weight:800;font-size:15.5px;padding:12px 16px;border-radius:12px;border:none;
+  background:var(--deep);color:#fff;cursor:pointer;box-shadow:0 3px 0 var(--deep2);
+  text-decoration:none;width:100%}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.btn.alt{background:var(--coral);box-shadow:0 3px 0 #c94a2c}
+.btn.ghost2{background:#fff;color:var(--ink);border:1px solid var(--line);
+  box-shadow:0 3px 0 rgba(13,107,98,.12)}
+.btn:disabled{opacity:.45;box-shadow:none;transform:none;cursor:default}
+.rowgap{display:flex;gap:8px;margin-top:10px}
+.rowgap .btn{flex:1}
+.typ{width:100%;font:inherit;font-size:18px;font-weight:700;padding:12px;
+  border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.typ:focus{outline:none;border-color:var(--deep);box-shadow:0 0 0 3px #d7f0e8}
+.typ.bad{border-color:#ffb8a6;background:#fff3ef}
+.typ.good{border-color:#9fdfc7;background:#f0fbf6;color:var(--good)}
+.hint{min-height:18px;font-size:13.5px;font-weight:700;color:var(--muted);
+  margin:10px 0 0;text-align:center}
+.hint.good{color:var(--good)}
+.hint.bad{color:var(--bad)}
+.prog{font-size:12px;font-weight:800;color:var(--muted);text-align:center;margin:8px 0 0;
+  letter-spacing:.3px;text-transform:uppercase}
+.sent{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0 0}
+.chip{font:inherit;font-size:15.5px;font-weight:700;padding:8px 11px;border-radius:10px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  box-shadow:0 2px 0 rgba(13,107,98,.10)}
+.chip:active{transform:translateY(1px);box-shadow:none}
+.chip.good{background:#e9f9d8;border-color:#b6dd8f;color:#2f4a00}
+.chip.bad{background:#fff0eb;border-color:#ffb8a6;color:#9a3412}
+.chip:disabled{cursor:default;box-shadow:none}
+.prompt{font-size:19px;font-weight:800;text-align:center;margin:12px 0 0;line-height:1.4}
+.slot{min-height:54px;border:1.5px dashed #b9dcd3;border-radius:12px;padding:8px;
+  display:flex;flex-wrap:wrap;gap:6px;background:#f7fdfb;margin:10px 0 0}
+.tile{font:inherit;font-size:15px;font-weight:700;padding:7px 10px;border-radius:9px;
+  border:1px solid var(--line);background:#fff;cursor:pointer;
+  box-shadow:0 2px 0 rgba(13,107,98,.10)}
+.tile:active{transform:translateY(1px);box-shadow:none}
+.pool{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.opts{display:grid;gap:8px;margin-top:10px}
+.opt{font:inherit;font-weight:700;font-size:15.5px;padding:12px;border-radius:11px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;
+  text-align:left;box-shadow:0 2px 0 rgba(13,107,98,.10)}
+.opt:active{transform:translateY(1px);box-shadow:none}
+.opt.right{background:#eaf9d6;border-color:#b6dd8f;color:#2f4a00}
+.opt.wrong{background:#fff0eb;border-color:#ffb8a6;color:#9a3412}
+.opt:disabled{cursor:default;box-shadow:none}
+.statrow{display:flex;justify-content:space-between;font-size:12px;font-weight:800;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.statrow b{font-size:18px;color:var(--ink)}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:12px 0 0}
+.mcard{min-height:74px;border:1px solid var(--line);border-radius:11px;padding:5px;
+  background:linear-gradient(155deg,#e9f6f2,#dcefe9);font:inherit;font-weight:800;
+  font-size:11.5px;line-height:1.2;color:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  word-break:break-word;box-shadow:0 2px 0 rgba(13,107,98,.12)}
+.mcard::after{content:"?";color:#8fbdb2;font-size:19px}
+.mcard.on{background:#fff;color:var(--ink);border-color:#a9d6cb}
+.mcard.on::after{content:""}
+.mcard.done{background:#eaf9d6;border-color:#b6dd8f;color:#2f4a00;cursor:default}
+.mcard.done::after{content:""}
+.endbox{background:#f0fbf6;border:1px solid #9fdfc7;border-radius:13px;padding:13px;
+  text-align:center;margin-top:12px}
+.endbox b{display:block;font-size:28px;color:var(--good);line-height:1.1}
+.endbox span{font-size:13.5px;color:var(--muted);font-weight:700}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.bank span{font-size:13px;font-weight:700;background:#f1f8f6;border:1px solid var(--line);
+  border-radius:8px;padding:5px 9px;color:#33544f}
+.witem{margin-bottom:10px}
+.wsub{display:block;font-weight:800;font-size:14px;color:#33544f;margin-bottom:4px}
+.check{display:flex;align-items:flex-start;gap:9px;font-size:14px;font-weight:600;
+  color:#3c4f56;background:#f7fdfb;border:1px solid var(--line);border-radius:11px;
+  padding:10px 12px;margin-top:8px;cursor:pointer}
+.check input{width:19px;height:19px;accent-color:var(--deep);margin-top:1px;flex:0 0 auto}
+.note{margin:10px 0 0;font-size:12.5px;line-height:1.5;color:#5b7a73;background:#f4fbf9;
+  border-left:3px solid #b9dcd3;border-radius:0 8px 8px 0;padding:8px 10px}
+.setname{font-size:12.5px;color:var(--muted);font-weight:700;margin:0 0 10px}
+.algo{background:#f4fbf9;border:1.5px dashed #b9dcd3;border-radius:13px;padding:12px;
+  margin-top:12px}
+.algo-t{margin:0 0 9px;font-size:13px;font-weight:700}
+.srrow{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:0 0 8px}
+.sr{border-radius:9px;border:1px solid var(--line);background:#fff;text-align:center;
+  padding:7px 3px;font-size:11.5px;font-weight:800;color:var(--muted);line-height:1.2}
+.sr span{display:block;font-size:10px;font-weight:700;color:#9db4ae;margin-top:3px}
+.sr.repeat{border-color:#ffb8a6;background:#fff1ec;color:#a33c17}
+.sr.okay{border-color:#a9d6cb;background:#eefaf6;color:var(--deep)}
+.sr.hard,.sr.easy{opacity:.45}
+.srnote{margin:0 0 9px;font-size:13px;font-weight:900;color:#2f4a00}
+.rules{margin:0 0 9px;padding-left:17px;font-size:13px;line-height:1.5;color:#41615b}
+.rules li{margin-bottom:5px}
+.rules li.no{color:#a33c17;font-weight:700}
+.algowarn{margin:0;font-size:12.5px;line-height:1.5;color:#41615b;font-weight:700}
+.fc{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;
+  color:var(--muted);cursor:pointer;margin-top:12px;background:#fff;
+  border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.fc input{width:18px;height:18px;accent-color:var(--deep)}
+.modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;
+  justify-content:center;padding:18px;background:rgba(18,35,43,.55);
+  backdrop-filter:blur(4px)}
+.modal.on{display:flex;animation:rise .2s ease both}
+.sheet{background:#fff;border-radius:20px;padding:20px;width:100%;max-width:460px;
+  max-height:90vh;overflow:auto;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.sheet h2{margin:0 0 4px;font-size:21px;letter-spacing:-.3px}
+.sheet p{margin:0 0 14px;color:var(--muted);font-size:13.5px}
+.daygrid{display:grid;gap:9px}
+.dbtn{font:inherit;text-align:left;border:1px solid var(--line);background:#fff;
+  border-radius:13px;padding:12px;cursor:pointer;box-shadow:0 2px 0 rgba(13,107,98,.10);
+  color:var(--ink);display:flex;align-items:center;gap:11px}
+.dbtn:active{transform:translateY(2px);box-shadow:none}
+.dbtn .de{font-size:24px;line-height:1}
+.dbtn b{display:block;font-size:15px}
+.dbtn small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:1px}
+.dbtn.today{border-color:var(--deep);background:#f2fdfa}
+.dbtn .tg{display:inline-block;font-size:9.5px;font-weight:900;letter-spacing:.6px;
+  text-transform:uppercase;background:var(--deep);color:#fff;border-radius:6px;
+  padding:2px 6px;margin-left:auto}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(16px);
+  background:#12232b;color:#f4fdfa;padding:11px 16px;border-radius:11px;font-size:14px;
+  font-weight:700;opacity:0;transition:opacity .22s,transform .22s;z-index:90;
+  pointer-events:none;max-width:88vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.confetti{position:absolute;top:-30px;font-size:22px;animation:fall 1.6s ease-in forwards}
+@keyframes fall{to{transform:translateY(106vh) rotate(240deg);opacity:.12}}
+.foot{text-align:center;margin:16px 0 0;font-size:12.5px;color:var(--muted)}
+.foot button{font:inherit;font-size:12.5px;background:none;border:none;color:var(--muted);
+  text-decoration:underline;cursor:pointer;padding:4px}
+.dayfoot{margin:0 0 18px}
+</style>
+</head>
+<body>
+<div id="fx"></div>
+<div id="toast"></div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">🧪 Английская лаборатория
+      <span>29 ноября — 1 декабря · 3 дня · 3 игры</span>
+    </div>
+    <button class="ghost" id="changeDay" type="button">Сменить день</button>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <section class="day" data-day="1">
+    <div class="dayhead">
+      <span class="pill">Воскресенье 29 ноября</span>
+      <h1>🕵️ Детектив</h1>
+      <p class="sub">Найди ошибку → пять фраз → флешкарты. Около 14 минут.</p>
+    </div>
+
+    <div class="card hero">
+      <div class="qhead"><span class="step">Шаг 1</span> Найди ошибку<span class="mins">6 мин</span></div>
+      <p class="small">В каждом предложении одно слово написано неправильно. Нажми на него.</p>
+      <div id="d1sent" class="sent"></div>
+      <p class="hint" id="d1hint"></p>
+      <p class="prog" id="d1prog"></p>
+      <div id="d1end" hidden></div>
+    </div>
+
+    <div class="card">
+      <div class="qhead"><span class="step">Шаг 2</span> Пять фраз<span class="mins">5 мин</span></div>
+      <p class="small">Допиши, что делает каждый человек. Одно предложение — один человек. Слова можно брать из списка.</p>
+      <div class="bank">
+        <span>watches TV</span><span>goes</span><span>finishes</span><span>washes</span>
+        <span>helps</span><span>plays</span><span>reads</span><span>comes home</span>
+      </div>
+      <div id="d1write"></div>
+      <div class="check"><input type="checkbox" id="sc1"><span>Я обвёл(а) слово, которое говорит <b>кто</b> делает действие.</span></div>
+      <div class="check"><input type="checkbox" id="sc2"><span>Я подчеркнул(а) глагол в каждом предложении.</span></div>
+      <div class="check"><input type="checkbox" id="sc3"><span>Я прочитал(а) все пять вслух.</span></div>
+      <p class="hint" id="d1writeMsg"></p>
+      <p class="note">Родителям: не исправляйте и не подсказывайте. Важно увидеть, что она напишет сама.</p>
+    </div>
+
+    <div class="card quiz quizslot"></div>
+    <div class="dayfoot"><button class="btn ghost2" data-finish="1" type="button">День готов ✓</button></div>
+  </section>
+
+  <section class="day" data-day="2">
+    <div class="dayhead">
+      <span class="pill">Понедельник 30 ноября</span>
+      <h1>🧱 Конструктор</h1>
+      <p class="sub">Собери предложение → послушай и выбери → флешкарты. Около 13 минут.</p>
+    </div>
+
+    <div class="card hero">
+      <div class="qhead"><span class="step">Шаг 1</span> Собери предложение<span class="mins">6 мин</span></div>
+      <p class="small">Нажимай на слова по порядку. Нажми на слово в верхней рамке, чтобы вернуть его назад.</p>
+      <p class="prompt" id="d2ru"></p>
+      <div class="slot" id="d2slot"></div>
+      <div class="pool" id="d2pool"></div>
+      <div class="rowgap">
+        <button class="btn" id="d2check" type="button">Проверить</button>
+        <button class="btn ghost2" id="d2skip" type="button">Дальше</button>
+      </div>
+      <p class="hint" id="d2hint"></p>
+      <p class="prog" id="d2prog"></p>
+      <div id="d2end" hidden></div>
+    </div>
+
+    <div class="card">
+      <div class="qhead"><span class="step">Шаг 2</span> Послушай и выбери<span class="mins">4 мин</span></div>
+      <p class="small">Нажми 🔊, послушай предложение и выбери то, что услышала. Варианты отличаются только окончанием.</p>
+      <button class="btn alt" id="l2play" type="button">🔊 Слушать</button>
+      <div class="opts" id="l2opts"></div>
+      <p class="hint" id="l2hint"></p>
+      <p class="prog" id="l2prog"></p>
+      <div id="l2end" hidden></div>
+    </div>
+
+    <div class="card quiz quizslot"></div>
+    <div class="dayfoot"><button class="btn ghost2" data-finish="2" type="button">День готов ✓</button></div>
+  </section>
+
+  <section class="day" data-day="3">
+    <div class="dayhead">
+      <span class="pill">Вторник 1 декабря</span>
+      <h1>🎯 Перед уроком</h1>
+      <p class="sub">Одна игра и флешкарты. Минут семь — сегодня урок.</p>
+    </div>
+
+    <div class="card hero">
+      <div class="qhead"><span class="step">Шаг 1</span> Найди пару<span class="mins">5 мин</span></div>
+      <p class="small">Открывай по две карточки. Найди английское слово и его перевод. Восемь пар.</p>
+      <div class="statrow"><span>Пары <b id="m3pairs">0</b>/8</span><span>Ходы <b id="m3moves">0</b></span></div>
+      <div class="mgrid" id="m3grid"></div>
+      <p class="hint" id="m3hint"></p>
+      <div id="m3end" hidden></div>
+    </div>
+
+    <div class="card quiz quizslot"></div>
+    <div class="dayfoot"><button class="btn ghost2" data-finish="3" type="button">День готов ✓</button></div>
+  </section>
+
+  <p class="foot">
+    Прогресс хранится на этом устройстве.
+    <button id="exportBtn" type="button">Отчёт для учителя</button>
+  </p>
+</div>
+
+<div class="modal" id="dayPick">
+  <div class="sheet">
+    <h2>Какой сегодня день?</h2>
+    <p>Нажми на день — откроется задание на сегодня.</p>
+    <div class="daygrid" id="daygrid"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var QUIZLET_URL="https://quizlet.com/1238531450/massive-collection-of-vocabulary-sasha-flash-cards/";
+var QUIZLET_NAME="Massive Collection of Vocabulary – Sasha";
+var QUIZLET_COUNT=50;
+var KEY="sasha-lab-29nov-1dec-v3";
+
+function $(s,r){ return (r||document).querySelector(s); }
+function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+function esc(s){
+  return String(s).replace(/[&<>"]/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
+  });
+}
+function norm(s){
+  return String(s||"").toLowerCase().replace(/[\u2019']/g,"'")
+    .replace(/[.,!?;:]/g,"").replace(/\s+/g," ").trim();
+}
+function shuffle(a){
+  var b=a.slice(), i, j, t;
+  for(i=b.length-1;i>0;i--){
+    j=Math.floor(Math.random()*(i+1));
+    t=b[i]; b[i]=b[j]; b[j]=t;
+  }
+  return b;
+}
+function toast(msg){
+  var t=$("#toast");
+  t.textContent=msg; t.classList.add("on");
+  clearTimeout(t._h);
+  t._h=setTimeout(function(){ t.classList.remove("on"); },2800);
+}
+function burst(n){
+  var box=$("#fx"), chars=["✨","⭐","🎉","🧪","💚","🏆"];
+  n=n||14;
+  for(var i=0;i<n;i++){
+    var s=document.createElement("span");
+    s.className="confetti"; s.textContent=chars[i%chars.length];
+    s.style.left=(6+Math.random()*88)+"vw";
+    s.style.animationDelay=(Math.random()*.22)+"s";
+    box.appendChild(s);
+    (function(el){ setTimeout(function(){ el.remove(); },1900); })(s);
+  }
+}
+
+var voice=null;
+function pickVoice(){
+  try{
+    var vs=window.speechSynthesis?speechSynthesis.getVoices():[];
+    for(var i=0;i<vs.length;i++){
+      if(/^en[-_](GB|US)/i.test(vs[i].lang)){ voice=vs[i]; return; }
+    }
+  }catch(e){}
+}
+if(window.speechSynthesis){
+  pickVoice();
+  speechSynthesis.onvoiceschanged=pickVoice;
+}
+function speak(text,rate){
+  try{
+    if(!window.speechSynthesis) return;
+    var u=new SpeechSynthesisUtterance(text);
+    u.lang="en-GB"; u.rate=rate||0.88; u.pitch=1;
+    if(voice) u.voice=voice;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+var S={day:1,done:{},answers:{},best:{},fc:{}};
+try{
+  var raw=localStorage.getItem(KEY);
+  if(raw){
+    var p=JSON.parse(raw);
+    if(p&&typeof p==="object"){
+      S.day=p.day||1; S.done=p.done||{}; S.answers=p.answers||{};
+      S.best=p.best||{}; S.fc=p.fc||{};
+    }
+  }
+}catch(e){}
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+
+var DAYS=[
+  {n:1,tab:"Вс 29",emoji:"🕵️",game:"Детектив"},
+  {n:2,tab:"Пн 30",emoji:"🧱",game:"Конструктор"},
+  {n:3,tab:"Вт 1",emoji:"🎯",game:"Перед уроком"}
+];
+
+/* ---------- tabs ---------- */
+(function buildTabs(){
+  var host=$("#tabs");
+  DAYS.forEach(function(d){
+    var b=document.createElement("button");
+    b.type="button"; b.className="tab"; b.setAttribute("data-day",d.n);
+    b.innerHTML='<span>'+d.emoji+'</span><span>'+d.tab+'</span><span class="ok"></span>';
+    b.addEventListener("click",function(){ openDay(d.n); });
+    host.appendChild(b);
+  });
+})();
+
+function openDay(n){
+  if(!n) return;
+  S.day=n; save();
+  $$(".day").forEach(function(sec){
+    sec.classList.toggle("on",+sec.getAttribute("data-day")===n);
+  });
+  $$(".tab").forEach(function(b){
+    var on=+b.getAttribute("data-day")===n;
+    b.classList.toggle("on",on);
+    b.querySelector(".ok").textContent=S.done[b.getAttribute("data-day")]?"✓":"";
+  });
+  closeModal();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ---------- day picker ---------- */
+function dayDate(n){
+  if(n===3) return {m:11,d:1};
+  return {m:10,d:28+n};
+}
+function isToday(n){
+  var t=new Date(), dd=dayDate(n);
+  return t.getFullYear()===2026 && t.getMonth()===dd.m && t.getDate()===dd.d;
+}
+(function buildModal(){
+  var grid=$("#daygrid");
+  var anyToday=DAYS.some(function(d){ return isToday(d.n); });
+  DAYS.forEach(function(d){
+    var b=document.createElement("button");
+    b.type="button";
+    b.className="dbtn"+(isToday(d.n)?" today":"");
+    var tag="";
+    if(isToday(d.n)) tag='<span class="tg">сегодня</span>';
+    else if(!anyToday && d.n===1) tag='<span class="tg">старт</span>';
+    b.innerHTML='<span class="de">'+d.emoji+'</span>'+
+      '<span><b>'+d.tab+'</b><small>'+d.game+'</small></span>'+tag;
+    b.addEventListener("click",function(){ openDay(d.n); });
+    grid.appendChild(b);
+  });
+})();
+function openModal(){ $("#dayPick").classList.add("on"); }
+function closeModal(){ $("#dayPick").classList.remove("on"); }
+$("#changeDay").addEventListener("click",openModal);
+$("#dayPick").addEventListener("click",function(e){
+  if(e.target===this) closeModal();
+});
+
+/* ---------- quizlet card ---------- */
+function quizHTML(day){
+  var step = day==="3" ? "Шаг 2" : "Шаг 3";
+  return '<div class="qhead"><span class="step">'+step+'</span> Флешкарты'+
+    '<span class="mins">5 мин</span></div>'+
+    '<p class="setname">'+QUIZLET_NAME+' · '+QUIZLET_COUNT+' карточек</p>'+
+    '<a class="btn" href="'+QUIZLET_URL+'" target="_blank" rel="noopener">Открыть Quizlet →</a>'+
+    '<div class="algo">'+
+      '<p class="algo-t">Режим: <b>Flashcards</b> + <b>Spaced Repetition</b></p>'+
+      '<div class="srrow">'+
+        '<div class="sr repeat">Repeat<span>&lt;1 мин</span></div>'+
+        '<div class="sr hard">Hard<span>не надо</span></div>'+
+        '<div class="sr okay">Okay<span>10 мин</span></div>'+
+        '<div class="sr easy">Easy<span>не надо</span></div>'+
+      '</div>'+
+      '<p class="srnote">Только две кнопки: Repeat или Okay.</p>'+
+      '<ul class="rules">'+
+        '<li><b>Repeat</b> — не помнишь. Слово вернётся через минуту.</li>'+
+        '<li><b>Okay</b> — помнишь уверенно. Вернётся через десять минут.</li>'+
+        '<li class="no">Hard и Easy не нажимай: Easy отправит слово на четыре дня вперёд.</li>'+
+      '</ul>'+
+      '<p class="algowarn">Сомневаешься — жми Repeat. Это не штраф.</p>'+
+    '</div>'+
+    '<label class="fc"><input type="checkbox" data-fc="'+day+'"><span>Прошла весь набор</span></label>';
+}
+(function buildQuiz(){
+  $$(".quizslot").forEach(function(el){
+    var day=el.closest(".day").getAttribute("data-day");
+    el.innerHTML=quizHTML(day);
+    var cb=el.querySelector("[data-fc]");
+    cb.checked=!!S.fc[day];
+    cb.addEventListener("change",function(){
+      S.fc[day]=cb.checked; save();
+      if(cb.checked){ burst(10); toast("Флешкарты готовы ✓"); }
+    });
+  });
+})();
+
+/* ================= DAY 1 ================= */
+var D1=[
+  {w:["Kate","watch","TV","every","evening"],bad:1,fix:"watches"},
+  {w:["Tom","gos","to","school","by","bus"],bad:1,fix:"goes"},
+  {w:["Anna","finish","her","homework","at","five"],bad:1,fix:"finishes"},
+  {w:["My","dad","wash","his","car","on","Sunday"],bad:2,fix:"washes"},
+  {w:["The","children","plays","in","the","park"],bad:2,fix:"play"},
+  {w:["We","watches","films","on","Friday"],bad:1,fix:"watch"},
+  {w:["My","aunt","brush","her","hair","in","the","morning"],bad:2,fix:"brushes"},
+  {w:["Our","dog","like","fish"],bad:2,fix:"likes"}
+];
+var d1={i:0,first:0,miss:0,locked:false};
+
+function renderD1(){
+  var it=D1[d1.i], host=$("#d1sent");
+  if(!host) return;
+  if(!it){
+    host.innerHTML="";
+    $("#d1hint").textContent="";
+    $("#d1prog").textContent="";
+    var box=$("#d1end");
+    box.hidden=false;
+    box.innerHTML='<div class="endbox"><b>'+d1.first+' / '+D1.length+'</b>'+
+      '<span>с первой попытки</span></div>';
+    S.best.d1=d1.first; save(); burst(16); toast("Детектив закончил работу 🕵️");
+    return;
+  }
+  d1.locked=false; d1.miss=0;
+  host.innerHTML="";
+  it.w.forEach(function(word,idx){
+    var b=document.createElement("button");
+    b.type="button"; b.className="chip"; b.textContent=word;
+    b.addEventListener("click",function(){ tapD1(idx,b); });
+    host.appendChild(b);
+  });
+  $("#d1hint").textContent=""; $("#d1hint").className="hint";
+  $("#d1prog").textContent="Предложение "+(d1.i+1)+" из "+D1.length+
+    " · с первой попытки: "+d1.first;
+}
+function tapD1(idx,btn){
+  var it=D1[d1.i];
+  if(d1.locked||!it) return;
+  if(idx===it.bad){
+    d1.locked=true;
+    btn.classList.add("good");
+    $$("#d1sent .chip").forEach(function(b){ b.disabled=true; });
+    if(d1.miss===0) d1.first++;
+    $("#d1hint").textContent="Верно! "+it.w[it.bad]+" → "+it.fix;
+    $("#d1hint").className="hint good";
+    speak(it.fix);
+    setTimeout(function(){ d1.i++; renderD1(); },1000);
+    return;
+  }
+  d1.miss++;
+  btn.classList.add("bad");
+  setTimeout(function(){ btn.classList.remove("bad"); },360);
+  if(d1.miss>=3){
+    d1.locked=true;
+    $$("#d1sent .chip").forEach(function(b){ b.disabled=true; });
+    var right=$("#d1sent").children[it.bad];
+    if(right) right.classList.add("good");
+    $("#d1hint").textContent="Это было: "+it.w[it.bad]+" → "+it.fix;
+    $("#d1hint").className="hint bad";
+    setTimeout(function(){ d1.i++; renderD1(); },1700);
+  } else {
+    $("#d1hint").textContent="Не это слово. Ищи глагол.";
+    $("#d1hint").className="hint bad";
+  }
+}
+
+var WSUB=["My mum","My dad","My granny","My aunt","My uncle"];
+(function buildWrite(){
+  var host=$("#d1write");
+  if(!host) return;
+  WSUB.forEach(function(sub,i){
+    var d=document.createElement("div");
+    d.className="witem";
+    d.innerHTML='<span class="wsub">'+(i+1)+". "+esc(sub)+'</span>'+
+      '<input class="typ" data-w="'+i+'" autocomplete="off" spellcheck="false" '+
+      'placeholder="что делает?">';
+    host.appendChild(d);
+    var inp=d.querySelector("input");
+    inp.value=S.answers["w"+i]||"";
+    inp.addEventListener("input",function(){
+      S.answers["w"+i]=inp.value; save(); countWrite();
+    });
+  });
+  ["sc1","sc2","sc3"].forEach(function(id){
+    var cb=document.getElementById(id);
+    if(!cb) return;
+    cb.checked=!!S.answers[id];
+    cb.addEventListener("change",function(){ S.answers[id]=cb.checked; save(); });
+  });
+  countWrite();
+})();
+function countWrite(){
+  var n=0, i;
+  for(i=0;i<5;i++){ if((S.answers["w"+i]||"").trim()) n++; }
+  var m=$("#d1writeMsg");
+  if(!m) return;
+  m.textContent=n+" из 5 написано";
+  m.className="hint";
+  if(n===5){
+    m.textContent="Все пять готовы. Теперь три галочки ниже.";
+    m.className="hint good";
+  }
+}
+
+/* ================= DAY 2 ================= */
+var D2=[
+  {ru:"Мой брат помогает маме.",en:"My brother helps my mum"},
+  {ru:"Мы завтракаем в восемь.",en:"We have breakfast at eight"},
+  {ru:"Анна идёт в школу пешком.",en:"Anna walks to school"},
+  {ru:"Дети делают уроки после школы.",en:"The children do homework after school"},
+  {ru:"Моя мама моет руки утром.",en:"My mum washes her hands in the morning"},
+  {ru:"Папа приходит домой в шесть.",en:"My dad comes home at six"},
+  {ru:"Мои друзья играют в футбол.",en:"My friends play football"},
+  {ru:"Бабушка смотрит телевизор вечером.",en:"My granny watches TV in the evening"}
+];
+var d2={i:0,first:0,tries:0,words:[],pool:[],placed:[]};
+
+function renderD2(){
+  var it=D2[d2.i];
+  if(!$("#d2ru")) return;
+  if(!it){ endD2(); return; }
+  d2.words=it.en.split(" ").map(function(w,i){ return {id:i,w:w}; });
+  d2.placed=[];
+  d2.pool=shuffle(d2.words.map(function(x){ return x.id; }));
+  d2.tries=0;
+  $("#d2ru").textContent=it.ru;
+  $("#d2hint").textContent=""; $("#d2hint").className="hint";
+  $("#d2prog").textContent="Предложение "+(d2.i+1)+" из "+D2.length+
+    " · с первой попытки: "+d2.first;
+  paintD2();
+}
+function paintD2(){
+  var slot=$("#d2slot"), pool=$("#d2pool");
+  slot.innerHTML=""; pool.innerHTML="";
+  d2.placed.forEach(function(id){
+    var b=document.createElement("button");
+    b.type="button"; b.className="tile"; b.textContent=d2.words[id].w;
+    b.addEventListener("click",function(){
+      d2.placed=d2.placed.filter(function(x){ return x!==id; });
+      d2.pool.push(id); paintD2();
+    });
+    slot.appendChild(b);
+  });
+  d2.pool.forEach(function(id){
+    var b=document.createElement("button");
+    b.type="button"; b.className="tile"; b.textContent=d2.words[id].w;
+    b.addEventListener("click",function(){
+      d2.pool=d2.pool.filter(function(x){ return x!==id; });
+      d2.placed.push(id); paintD2();
+    });
+    pool.appendChild(b);
+  });
+}
+function checkD2(){
+  var it=D2[d2.i];
+  if(!it) return;
+  if(d2.placed.length!==d2.words.length){
+    $("#d2hint").textContent="Используй все слова.";
+    $("#d2hint").className="hint bad";
+    return;
+  }
+  var built=d2.placed.map(function(id){ return d2.words[id].w; }).join(" ");
+  if(norm(built)===norm(it.en)){
+    if(d2.tries===0) d2.first++;
+    $("#d2hint").textContent="Верно! "+it.en;
+    $("#d2hint").className="hint good";
+    speak(it.en);
+    setTimeout(function(){ d2.i++; renderD2(); },1100);
+    return;
+  }
+  d2.tries++;
+  if(d2.tries>=3){
+    $("#d2hint").textContent="Правильно: "+it.en;
+    $("#d2hint").className="hint bad";
+    setTimeout(function(){ d2.i++; renderD2(); },1700);
+  } else {
+    $("#d2hint").textContent="Не так. Прочитай вслух: кто делает действие?";
+    $("#d2hint").className="hint bad";
+  }
+}
+function endD2(){
+  $("#d2ru").textContent="";
+  $("#d2slot").innerHTML=""; $("#d2pool").innerHTML="";
+  $("#d2hint").textContent=""; $("#d2prog").textContent="";
+  var box=$("#d2end");
+  box.hidden=false;
+  box.innerHTML='<div class="endbox"><b>'+d2.first+' / '+D2.length+'</b>'+
+    '<span>с первой попытки</span></div>';
+  S.best.d2=d2.first; save(); burst(16); toast("Конструктор собран 🧱");
+}
+$("#d2check").addEventListener("click",checkD2);
+$("#d2skip").addEventListener("click",function(){
+  if(d2.i<D2.length){ d2.i++; renderD2(); }
+});
+
+var L2=[
+  {say:"Kate brushes her teeth.",
+   o:["Kate brush her teeth.","Kate brushes her teeth.","Kate brushs her teeth."],a:1},
+  {say:"The children play in the park.",
+   o:["The children plays in the park.","The children playes in the park.",
+      "The children play in the park."],a:2},
+  {say:"My granny goes to the shop.",
+   o:["My granny go to the shop.","My granny gos to the shop.",
+      "My granny goes to the shop."],a:2},
+  {say:"My dad finishes work at six.",
+   o:["My dad finish work at six.","My dad finishes work at six.",
+      "My dad finishs work at six."],a:1},
+  {say:"We have breakfast at eight.",
+   o:["We has breakfast at eight.","We have breakfast at eight.",
+      "We haves breakfast at eight."],a:1},
+  {say:"Tom wants a new bike.",
+   o:["Tom want a new bike.","Tom wants a new bike.","Tom wantes a new bike."],a:1}
+];
+var l2={i:0,score:0,locked:false};
+
+function renderL2(){
+  var it=L2[l2.i], box=$("#l2opts");
+  if(!box) return;
+  if(!it){ endL2(); return; }
+  l2.locked=false;
+  $("#l2hint").textContent=""; $("#l2hint").className="hint";
+  $("#l2prog").textContent="Предложение "+(l2.i+1)+" из "+L2.length+
+    " · верно: "+l2.score;
+  box.innerHTML="";
+  it.o.forEach(function(txt,idx){
+    var b=document.createElement("button");
+    b.type="button"; b.className="opt"; b.textContent=txt;
+    b.addEventListener("click",function(){ pickL2(idx,b); });
+    box.appendChild(b);
+  });
+  speak(it.say);
+}
+function pickL2(idx,btn){
+  var it=L2[l2.i];
+  if(l2.locked||!it) return;
+  l2.locked=true;
+  var opts=$$("#l2opts .opt");
+  opts.forEach(function(b){ b.disabled=true; });
+  opts[it.a].classList.add("right");
+  S.answers["l2-"+l2.i]=idx; save();
+  if(idx===it.a){
+    l2.score++;
+    $("#l2hint").textContent="Верно!";
+    $("#l2hint").className="hint good";
+  } else {
+    btn.classList.add("wrong");
+    $("#l2hint").textContent="Слушай ещё: "+it.say;
+    $("#l2hint").className="hint bad";
+    speak(it.say,0.75);
+  }
+  setTimeout(function(){ l2.i++; renderL2(); },1500);
+}
+function endL2(){
+  $("#l2opts").innerHTML="";
+  $("#l2hint").textContent=""; $("#l2prog").textContent="";
+  var box=$("#l2end");
+  box.hidden=false;
+  box.innerHTML='<div class="endbox"><b>'+l2.score+' / '+L2.length+'</b>'+
+    '<span>услышано верно</span></div>';
+  S.best.l2=l2.score; save(); burst(14); toast("Слух проверен 🎧");
+}
+$("#l2play").addEventListener("click",function(){
+  var it=L2[l2.i];
+  if(it) speak(it.say);
+});
+
+/* ================= DAY 3 ================= */
+var M3=[
+  ["watch TV","смотреть ТВ"],
+  ["wash your hands","мыть руки"],
+  ["finish","заканчивать"],
+  ["always","всегда"],
+  ["never","никогда"],
+  ["usually","обычно"],
+  ["sometimes","иногда"],
+  ["often","часто"]
+];
+var m3={deck:[],open:[],lock:false,moves:0,matched:0};
+
+function buildDeck(){
+  var out=[];
+  M3.forEach(function(p,i){
+    out.push({p:i,text:p[0],done:false});
+    out.push({p:i,text:p[1],done:false});
+  });
+  return shuffle(out);
+}
+function startM3(){
+  m3.deck=buildDeck(); m3.open=[]; m3.lock=false; m3.moves=0; m3.matched=0;
+  if(!$("#m3grid")) return;
+  $("#m3moves").textContent="0";
+  $("#m3pairs").textContent="0";
+  $("#m3hint").textContent=""; $("#m3hint").className="hint";
+  $("#m3end").hidden=true;
+  paintM3();
+}
+function paintM3(){
+  var g=$("#m3grid");
+  if(!g) return;
+  g.innerHTML="";
+  m3.deck.forEach(function(c,i){
+    var b=document.createElement("button");
+    b.type="button";
+    var cls="mcard";
+    if(c.done) cls+=" done";
+    else if(m3.open.indexOf(i)>-1) cls+=" on";
+    b.className=cls;
+    b.textContent=(c.done||m3.open.indexOf(i)>-1)?c.text:"";
+    b.addEventListener("click",function(){ tapM3(i); });
+    g.appendChild(b);
+  });
+}
+function tapM3(i){
+  if(m3.lock) return;
+  var c=m3.deck[i];
+  if(!c||c.done||m3.open.indexOf(i)>-1) return;
+  m3.open.push(i);
+  paintM3();
+  if(m3.open.length<2) return;
+  m3.moves++;
+  $("#m3moves").textContent=m3.moves;
+  var a=m3.open[0], b=m3.open[1];
+  if(m3.deck[a].p===m3.deck[b].p){
+    m3.deck[a].done=true; m3.deck[b].done=true;
+    m3.matched++;
+    $("#m3pairs").textContent=m3.matched;
+    m3.open=[];
+    paintM3();
+    if(m3.matched===M3.length) endM3();
+  } else {
+    m3.lock=true;
+    setTimeout(function(){ m3.open=[]; m3.lock=false; paintM3(); },800);
+  }
+}
+function endM3(){
+  var box=$("#m3end");
+  box.hidden=false;
+  box.innerHTML='<div class="endbox"><b>'+m3.moves+'</b>'+
+    '<span>ходов · все восемь пар найдены</span></div>'+
+    '<div class="rowgap"><button class="btn ghost2" id="m3again" type="button">Ещё раз</button></div>';
+  S.best.m3=m3.moves; save(); burst(18); toast("Все пары найдены 🎯");
+  $("#m3again").addEventListener("click",startM3);
+}
+
+/* ---------- finish day ---------- */
+$$("[data-finish]").forEach(function(b){
+  b.addEventListener("click",function(){
+    var n=b.getAttribute("data-finish");
+    S.done[n]=true; save();
+    b.textContent="Готово ✓";
+    $$(".tab").forEach(function(t){
+      if(t.getAttribute("data-day")===n) t.querySelector(".ok").textContent="✓";
+    });
+    burst(18); toast("День отмечен! Отдыхай 🌟");
+  });
+});
+
+/* ---------- export ---------- */
+$("#exportBtn").addEventListener("click",function(){
+  var payload={
+    app:"Sasha — pre-lesson lab",
+    window:"29 Nov – 1 Dec 2026",
+    lesson:"Lesson 03 pre-work",
+    exportedAt:new Date().toISOString(),
+    activeDay:S.day,
+    daysDone:S.done,
+    flashcardsDone:S.fc,
+    answers:S.answers,
+    best:S.best
+  };
+  try{
+    var blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement("a");
+    var d=new Date();
+    var p2=function(n){ return (n<10?"0":"")+n; };
+    a.href=url;
+    a.download="sasha-lab-"+d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())+".json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); },800);
+    toast("Отчёт скачан");
+  }catch(e){ toast("Скачивание заблокировано"); }
+});
+
+/* ---------- boot ---------- */
+openDay(S.day||1);
+renderD1();
+renderD2();
+renderL2();
+startM3();
+if(!S.done["1"] && !S.done["2"] && !S.done["3"]) openModal();
+})();
+</script>
+</body>
+</html>
